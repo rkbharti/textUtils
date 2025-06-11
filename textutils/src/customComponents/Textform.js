@@ -30,6 +30,12 @@ export default function Textform(props) {
         const clearText = ("");
         setText(clearText);
     }
+    const handleCopyPasteclick =() =>{
+        var text = document.getElementById("InputBox");
+        text.select();
+        text.setSelectionRange(0,9999);
+        navigator.clipboard.writeText(text.value)
+    }
 
     const handleOnChange = (event) => {
         setText(event.target.value);
@@ -76,6 +82,9 @@ export default function Textform(props) {
                 </button>
                  <button className="btn btn-primary mx-3" onClick={handleClearclick}>
                     Clear Text
+                </button>
+                <button className="btn btn-primary mx-3" onClick={handleCopyPasteclick}>
+                    Copy Text
                 </button>
                  
                

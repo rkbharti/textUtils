@@ -1,15 +1,37 @@
-import React  from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Alert(props) {
-    return(
-            props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
-                <strong>{props.alert.type}</strong> {props.alert.msg}
-            </div>
-    )
-    return(
-            props.redAlert && <div className={`alert alert-${props.redAlert.type} alert-dismissible fade show`} role="alert">
-                <strong>{props.redAlert.type}</strong> {props.redAlert.msg}
-            </div>
-    )
+function Alert({ alert }) {
+  // Don't render if no alert exists
+  if (!alert) return null;
+
+  return (
+    <div 
+      className={`alert alert-${alert.type} alert-dismissible fade show`} 
+      role="alert"
+      aria-live="assertive" // For screen readers
+    >
+      <strong>{capitalizeFirstLetter(alert.type)}</strong>: {alert.msg}
+    </div>
+  );
 }
-export default Alert
+
+// Helper function to capitalize first letter
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// Prop type validation
+Alert.propTypes = {
+  alert: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    msg: PropTypes.string.isRequired
+  })
+};
+
+// Default props
+Alert.defaultProps = {
+  alert: null
+};
+
+export default Alert;

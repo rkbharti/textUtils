@@ -9,32 +9,38 @@ export default function Textform(props) {
     const handleUpclick = () => {
         let convertedUpperCase = text.toUpperCase();
         setText(convertedUpperCase);
+        props.showAlert("Converted to UpperCase", "success"); // showAlert is used from the app.js file to use thaat method to show
     }
 
     const handleDownclick = () => {
         let convertedLowerCase = text.toLowerCase();
         setText(convertedLowerCase);
+        props.showAlert("Converted to LowerCase", "success");
     }
 
     const handleSplitclick = () => {
         let convertedSplitText = text.split(" ");
         setText(convertedSplitText.join("\n"));
+        props.showAlert("Converted to Split TExt ", "success");
     }
 
      const handleReplaceclick = () => {
         const updatedText = text.replaceAll(findText ,replaceText);
         setText(updatedText);
+        props.showAlert(" Sucessfully replace ", "success");
     }
 
     const handleClearclick = () => {
         const clearText = ("");
         setText(clearText);
+        props.showAlert("Text Clear ", "success");
     }
     const handleCopyPasteclick =() =>{
         var text = document.getElementById("InputBox");
         text.select();
         text.setSelectionRange(0,9999);
         navigator.clipboard.writeText(text.value)
+        props.showAlert(" TEXT in CLIPBOARD", "success");
     }
 
     const handleOnChange = (event) => {
@@ -43,7 +49,7 @@ export default function Textform(props) {
 
     return (
         <>
-            <div className='container my-3'>
+            <div className='container my-3' style={{color:props.mode=== 'dark' ? 'white' :'black'}}>
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
                 <input
@@ -52,6 +58,7 @@ export default function Textform(props) {
                     placeholder="Text To Find"
                     value={findText}
                     onChange={(e)=> setFindText(e.target.value)} 
+                    style={{backgroundColor:props.mode==='dark' ? 'grey':'white', color:props.mode==='dark' ? 'white':'black' }}
                     />
                 <input
                     type='text'
@@ -59,11 +66,13 @@ export default function Textform(props) {
                     placeholder= "Text to replace with"
                     value={replaceText}
                     onChange={(e)=> setReplaceText(e.target.value)}
+                    style={{backgroundColor:props.mode==='dark' ? 'grey':'white', color:props.mode==='dark' ? 'white':'black' }}
                     />
                     <textarea 
                         className="form-control" 
                         value={text} 
                         onChange={handleOnChange} 
+                        style={{backgroundColor:props.mode==='dark' ? 'grey':'white', color:props.mode==='dark' ? 'white':'black' }}
                         id="InputBox" 
                         rows="8"
                     ></textarea>
@@ -89,17 +98,17 @@ export default function Textform(props) {
                  
                
             </div>
-            <div className='container my-3'>
+            <div className='container my-3'  style={{color:props.mode=== 'dark' ? 'white' :'black'}}>
                 <h1>Text Summary</h1>
                <p> {text.split(" ").length} words and {text.length} chracters</p>
             </div>
 
-            <div className='container my-3'>
+            <div className='container my-3'  style={{color:props.mode=== 'dark' ? 'white' :'black'}}>
                 <h2>Minutes taken to Read this paragraph</h2>
                <p> {0.008 * text.split(" ").length }minutes taken </p>
             </div>
 
-            <div className='container my-3'>
+            <div className='container my-3'  style={{color:props.mode=== 'dark' ? 'white' :'black'}}>
                 <h3>PREVIEW of Text</h3>
                <p> {text} </p>
             </div>

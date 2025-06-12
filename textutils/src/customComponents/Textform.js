@@ -43,6 +43,15 @@ export default function Textform(props) {
         props.showAlert(" TEXT in CLIPBOARD", "success");
     }
 
+    const countWords = (text) => {
+        if (text.trim() === '') return 0;  // Handle empty or whitespace-only input
+        return text.trim().split(/\s+/).length;
+            };
+
+const countCharacters = (text) => {
+  return text.length;
+};
+
     const handleOnChange = (event) => {
         setText(event.target.value);
     }
@@ -100,7 +109,7 @@ export default function Textform(props) {
             </div>
             <div className='container my-3'  style={{color:props.mode=== 'dark' ? 'white' :'black'}}>
                 <h1>Text Summary</h1>
-               <p> {text.split(" ").length} words and {text.length} chracters</p>
+               <p>{countWords(text)} words and {countCharacters(text)} characters</p>
             </div>
 
             <div className='container my-3'  style={{color:props.mode=== 'dark' ? 'white' :'black'}}>

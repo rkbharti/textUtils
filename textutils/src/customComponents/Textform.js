@@ -45,10 +45,13 @@ export default function Textform(props) {
 
     const countWords = (text) => {
         if (text.trim() === '') return 0;  // Handle empty or whitespace-only input
+        //   text.trim() remove whitespace from both ends 
+        // split(/\s+/)  splits on any one or more spaces tabs and newlines too
         return text.trim().split(/\s+/).length;
             };
 
 const countCharacters = (text) => {
+    //    
   return text.length;
 };
 
@@ -86,8 +89,9 @@ const countCharacters = (text) => {
                         rows="8"
                     ></textarea>
                 </div>
-                <button className="btn btn-primary mx-3" onClick={handleUpclick}>
-                    Convert to UpperCase
+                <button disabled={text.length===0} className="btn btn-primary mx-3" onClick={handleUpclick}> {/* disabled={text.length===0} used for  
+                                                                                    disabled button when there tis nothing to do in text input area*/}
+                  Convert to UpperCase
                 </button>
                 <button className="btn btn-primary mx-3" onClick={handleDownclick}>
                     Convert to LowerCase

@@ -22,10 +22,10 @@ function App() {
   const toggleMode = (selectedMode) => {
     if (mode === selectedMode) {
       setMode('light');
-      document.body.style.backgroundColor = 'white';
-      document.body.style.color = 'black';
-      showAlert("Light Mode Enabled", "success");
-      document.title = 'TextUtils - Light Mode';
+      // document.body.style.backgroundColor = 'white';
+      // document.body.style.color = 'black';
+      // showAlert("Light Mode Enabled", "success");
+      // document.title = 'TextUtils - Light Mode';
     } 
     else {
       setMode(selectedMode);
@@ -33,12 +33,12 @@ function App() {
         document.body.style.backgroundColor = '#042743';
         document.body.style.color = 'white';
         showAlert("Dark Mode Enabled", "success");
-        document.title = 'TextUtils - Dark Mode';
+        // document.title = 'TextUtils - Dark Mode';
       } else if (selectedMode === 'red') {
         document.body.style.backgroundColor = '#8B0000';
         document.body.style.color = '#FFD700';
         showAlert("Red Mode Enabled", "success");
-        document.title = 'TextUtils - Red Mode';
+        // document.title = 'TextUtils - Red Mode';
       }
     }
   };
@@ -54,7 +54,7 @@ function App() {
             <Route path="/" element={
               <Textform 
                 showAlert={showAlert} 
-                heading="Try TextUtils - word counter, character counter, remove extra spaces" 
+                heading="Try TextUtils - word counter, character counter, LOwerUpperCase" 
                 mode={mode}
               />
             } />

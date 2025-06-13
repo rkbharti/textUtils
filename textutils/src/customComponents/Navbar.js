@@ -21,7 +21,7 @@ export default function Navbar({ title, AboutUs, mode, toggleMode }) {
                 <Link className={`nav-link active text-${textColor}`} to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">About Us</Link>
+                <Link className="nav-link" to="/about">props.About Us</Link>
               </li>
               <li className="nav-item">
                 <Link className={`nav-link text-${textColor} blinking-text`} to="/install">
@@ -31,6 +31,8 @@ export default function Navbar({ title, AboutUs, mode, toggleMode }) {
           </ul>
 
           <div className="d-flex">
+            <div className = "bg-primary rounded mx-3" onClick={()=>{props.toggleMode('primary')}}style= {{height: '30px', width: '30px',cursor: 'pointer'}}></div>
+            <div className = "bg-secondary rounded mx-3" onClick={()=>{props.toggleMode('primary')}}style= {{height: '30px', width: '30px',cursor: 'pointer'}}></div>
             <div className={`form-check form-switch text-${textColor} mx-2`}>
               <input 
                 className="form-check-input" 

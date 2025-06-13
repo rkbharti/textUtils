@@ -22,6 +22,10 @@ export default function Navbar({ title, aboutus, mode, toggleMode }) {
             <li className="nav-item">
               <a className={`nav-link text-${textColor}`} href="/">{aboutus}</a>
             </li>
+          
+                <a className={`nav-link text-${textColor} blinking-text`} href="/">
+                  Install
+                </a>
           </ul>
 
           <div className="d-flex">

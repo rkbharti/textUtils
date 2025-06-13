@@ -24,6 +24,8 @@ function App() {
       document.body.style.backgroundColor = 'white';
       document.body.style.color = 'black';
       showAlert("Light Mode Enabled", "success");
+      document.title = 'TextUtils is in  - Light Mode';
+      
     } 
     // Otherwise set to selected mode
     else {
@@ -32,10 +34,12 @@ function App() {
         document.body.style.backgroundColor = '#042743';
         document.body.style.color = 'white';
         showAlert("Dark Mode Enabled", "success");
+        document.title = 'TextUtils is in  - Dark Mode';
       } else if (selectedMode === 'red') {
         document.body.style.backgroundColor = '#8B0000';
         document.body.style.color = '#FFD700';
         showAlert("Red Mode Enabled", "success");
+        document.title = 'TextUtils is in  - Red Mode';
       }
     }
   };

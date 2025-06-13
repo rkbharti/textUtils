@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-export default function Navbar({ title, aboutus, mode, toggleMode }) {
+export default function Navbar({ title, AboutUs, mode, toggleMode }) {
   // Dynamic text color calculation
   const textColor = mode === 'light' ? 'dark' : 'light';
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
       <div className="container-fluid">
-        <a className={`navbar-brand text-${textColor}`} href="/">{title}</a>
+        <Link className={`navbar-brand text-${textColor}`} to="/">{title}</Link>
         
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span className="navbar-toggler-icon"></span>
@@ -16,16 +17,17 @@ export default function Navbar({ title, aboutus, mode, toggleMode }) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className={`nav-link active text-${textColor}`} href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className={`nav-link text-${textColor}`} href="/">{aboutus}</a>
-            </li>
-          
-                <a className={`nav-link text-${textColor} blinking-text`} href="/">
+              <li className="nav-item">
+                <Link className={`nav-link active text-${textColor}`} to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">About Us</Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link text-${textColor} blinking-text`} to="/install">
                   Install
-                </a>
+                </Link>
+              </li>
           </ul>
 
           <div className="d-flex">

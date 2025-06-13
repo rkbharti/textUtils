@@ -1,64 +1,66 @@
 import { useState } from 'react';
 import './App.css';
-import Navbar from './customComponents/Navbar.js';
-import Textform from './customComponents/Textform.js';
-import Alert from './customComponents/Alert.js';
-// import Aboutus from './customComponents/Aboutus.js';
+import Navbar from './customComponents/Navbar';
+import Textform from './customComponents/Textform';
+import Alert from './customComponents/Alert';
+import AboutUs from './customComponents/AboutUs';
+import {
+  BrowserRouter as Router,
+  Routes, /* Routes are new Syntax  for Switch in react router dom  */
+  Route,
+} from "react-router-dom";
 
 function App() {
-  // State for theme management
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
 
-  // Unified alert system
   const showAlert = (message, type) => {
     setAlert({ msg: message, type });
     setTimeout(() => setAlert(null), 3000);
   };
 
-  // Theme toggle functions
   const toggleMode = (selectedMode) => {
-    // Reset to light mode if clicking the currently active mode
     if (mode === selectedMode) {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       document.body.style.color = 'black';
       showAlert("Light Mode Enabled", "success");
-      document.title = 'TextUtils is in  - Light Mode';
-      
+      document.title = 'TextUtils - Light Mode';
     } 
-    // Otherwise set to selected mode
     else {
       setMode(selectedMode);
       if (selectedMode === 'dark') {
         document.body.style.backgroundColor = '#042743';
         document.body.style.color = 'white';
         showAlert("Dark Mode Enabled", "success");
-        document.title = 'TextUtils is in  - Dark Mode';
+        document.title = 'TextUtils - Dark Mode';
       } else if (selectedMode === 'red') {
         document.body.style.backgroundColor = '#8B0000';
         document.body.style.color = '#FFD700';
         showAlert("Red Mode Enabled", "success");
-        document.title = 'TextUtils is in  - Red Mode';
+        document.title = 'TextUtils - Red Mode';
       }
     }
   };
+
   return (
     <>
-      <Navbar
-        title="TextUtils"
-        aboutus="About Us"
-        mode={mode}
-        toggleMode={toggleMode}
-      />
-      <Alert alert={alert} />
-      <div className={`container my-3 text-${mode === 'light' ? 'dark' : 'light'}`}>
-        <Textform
-          heading="Enter the text to analyze"
-          mode={mode}
-          showAlert={showAlert}
-        />
-      </div>
+    <Router>
+        <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Routes>
+            <Route path="/about" element={<AboutUs mode={mode} />} />
+            <Route path="/" element={
+              <Textform 
+                showAlert={showAlert} 
+                heading="Try TextUtils - word counter, character counter, remove extra spaces" 
+                mode={mode}
+              />
+            } />
+          </Routes>
+        </div>
+    </Router>
     </>
   );
 }
